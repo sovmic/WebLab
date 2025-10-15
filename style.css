@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Jura';
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+main {
+    flex: 1;
+}
+
+#paginationBottom {
+    margin-bottom: 3rem;
+}
+
+.home_page {
+    background: linear-gradient(
+    180deg,
+    #FFBB00 0%,
+    #EAEAEA 5%,
+    #EAEAEA 75%,
+    #5E5E5E 100%
+  );
+}
+
+.catalog_page {
+    background: linear-gradient(
+    180deg,
+    #FFBB00 0%,
+    #EAEAEA 5%,
+    #EAEAEA 95%,
+    #FFBB00 100%
+  );
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Навигация */
+.navbar {
+    padding: 0px;
+    background: #5E5E5E;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+
+/* Кнопки */
+.nav_btn {
+    height: 100px;
+    width: 350px;
+    background: #FFBB00;
+    padding: 12px 30px;
+    border-radius: 35px;
+    text-decoration: none;
+    font-size: 32px;
+}
+
+.nav_btn:hover {
+    background: #ffe498;
+    transform: translateY(-2px);
+}
+
+.btn.btn-primary {
+    height: 70px;
+    width: 100px;
+    border-radius: 25px;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.filter_btn {
+    height: 50px;
+    width: 300px;
+    border-radius: 35px;
+    background: #B6B6B6;
+    color: rgb(0, 0, 0);
+}
+
+.filter_btn:hover {
+    background: #7f8c8d;
+    color:#ddd;
+}
+
+/* Секции */
+.features, .about, .order {
+    padding: 80px 0;
+}
+
+.catalog {
+    padding-top: 25px;
+}
+
+.about p {
+    font-size: 34px;
+}
+
+.about h2 {
+    font-size: 75px;
+}
+
+/* Каталог */
+.form-control {
+    font-size: 30px;
+    height: 70px;
+    border-radius: 25px;
+}
+
+.d-flex {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filters select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+}
+
+.catalog-empty {
+    display: block !important;
+    min-height: 400px;
+}
+
+.col-lg-4 {
+    width: 100%;
+}
+
+.mb-4 {
+    margin-bottom: 0px;
+}
+
+.gpu-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.gpu-card:hover {
+    transform: translateY(-5px);
+}
+
+.gpu-image {
+    width: 100%;
+    height: 200px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.gpu-info {
+    padding: 1.5rem;
+}
+
+.gpu-info h3 {
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.gpu-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #27ae60;
+    margin: 0.5rem 0;
+}
+
+.gpu-specs {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.gpu-specs li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Форма заказа */
+.order-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    min-width: 600px;
+    margin: 0 auto;
+}
+
+.orderContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.orderTicket {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    min-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Футер */
+footer {
+    background: #5E5E5E;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.footer_button {
+    background-color: #ffffff00;
+    font-size: 20px;
+    color: #EEEEEE;
+    border: none;
+    padding: 15px;
+}
