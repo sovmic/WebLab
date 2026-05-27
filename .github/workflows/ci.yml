@@ -20,7 +20,7 @@ jobs:
         node-version: '16'
         
     - name: Run tests
-      run: npm test
+      run: node test.js
       
   deploy:
     needs: test
