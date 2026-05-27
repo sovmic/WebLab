@@ -1,8 +1,8 @@
 {
     "liveServer.settings.port": 5502
-    "name": "my-first-cicd",
+    "name": "weblab",
     "version": "1.0.0",
     "scripts": {
     "test": "node test.js"
-    }
+  }
 }
