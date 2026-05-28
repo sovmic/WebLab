@@ -29,19 +29,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 1. Добавляем приватный SSH-ключ (хранится в секретах GitHub)
+      # 1. Добавляем приватный SSH-ключ
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.HOSTSECRET }}
 
-      # 2. Добавляем сервер в known_hosts (чтобы избежать вопроса про fingerprint)
+      # 2. Добавляем сервер в known_hosts
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      # 3. Копируем файлы на сервер через rsync (быстрее и удобнее scp)
+      # 3. Копируем файлы на сервер через rsync
       - name: Deploy via rsync
         run: |
           rsync -avz --delete \
