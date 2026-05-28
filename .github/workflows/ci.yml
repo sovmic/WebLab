@@ -1,4 +1,4 @@
-name: CI/CD for Website
+name: CI/CD to Timeweb Cloud via SSH
 
 on:
   push:
@@ -9,30 +9,44 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout code v1
-      uses: actions/checkout@v3
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-        
-    - name: Run tests
-      run: node test.js
-      
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run tests
+        run: node test.js
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 1. Добавляем приватный SSH-ключ (хранится в секретах GitHub)
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
+
+      # 2. Добавляем сервер в known_hosts (чтобы избежать вопроса про fingerprint)
+      - name: Add server to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      # 3. Копируем файлы на сервер через rsync (быстрее и удобнее scp)
+      - name: Deploy via rsync
+        run: |
+          rsync -avz --delete \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'node_modules' \
+            --exclude '.env' \
+            ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}
