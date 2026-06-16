@@ -1,4 +1,4 @@
-name: CI/CD to Timeweb Cloud via SSH
+name: CI/CD
 
 on:
   push:
